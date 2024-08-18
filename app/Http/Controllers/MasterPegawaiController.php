@@ -11,7 +11,7 @@ class MasterPegawaiController extends Controller
     {
         try {
             // Get Data Pegawai 
-            $data = MasterPegawai::paginate(10);
+            $data = MasterPegawai::paginate(15);
 
             return response()->json(['success' => true, 'message' => 'success', 'data' => $data]);
         } catch (\Exception $e) {

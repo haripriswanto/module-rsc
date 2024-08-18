@@ -15,7 +15,7 @@ class TimPegawaiController extends Controller
             // Get Data Pegawai 
             $data = TrxTimPegawai::join('mst_tim', 'mst_tim.tim_id', 'trx_tim_peg.tim_id')
                 ->join('pegawai', 'pegawai.peg_id', 'trx_tim_peg.peg_id')
-                ->paginate(10);
+                ->paginate(15);
 
             return response()->json(['success' => true, 'message' => 'success', 'data' => $data]);
         } catch (\Exception $e) {
@@ -29,7 +29,7 @@ class TimPegawaiController extends Controller
             // Custom validation messages
             $messages = [
                 'peg_id.required' => 'Nama Pegawai wajib dipilih.',
-                'tim_id.required' => 'Nama Pegawai wajib dipilih.'
+                'tim_id.required' => 'Nama Tim wajib dipilih.'
             ];
 
             $data = $request->validate([
@@ -52,8 +52,10 @@ class TimPegawaiController extends Controller
 
     public function delete($id)
     {
+        // dd($id);
         try {
             $data = TrxTimPegawai::findOrFail($id);
+
             $data->delete();
 
             return response()->json(['success' => true, 'message' => 'Berhasil Hapus data', 'data' => $data]);

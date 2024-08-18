@@ -11,7 +11,7 @@ class MasterTimController extends Controller
     {
         try {
             // Get Data Pegawai 
-            $data = MasterTim::paginate(10);
+            $data = MasterTim::paginate(15);
 
             return response()->json(['success' => true, 'message' => 'success', 'data' => $data]);
         } catch (\Exception $e) {
